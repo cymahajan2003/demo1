@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>New Native - AI Integration</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
-    <!-- Using Font Awesome via CDN instead of Kit -->
+    <!-- Using Font Awesome via CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2Lw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         * {
@@ -170,6 +170,7 @@
         .hero-content {
             z-index: 10;
             max-width: 50%;
+            padding-top: 60px; /* Add space between navbar and category button */
         }
 
         .category {
@@ -532,6 +533,7 @@
             .hero-content {
                 max-width: 100%;
                 margin-bottom: 40px;
+                padding-top: 60px; /* Add space between navbar and category button */
             }
 
             .category {
@@ -631,6 +633,12 @@
                 padding: 90px 15px; /* Adjusted for larger navbar */
             }
 
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 40px;
+                padding-top: 60px; /* Add space between navbar and category button */
+            }
+
             h1 {
                 font-size: 2.2em; /* Increased text size on mobile */
             }
@@ -709,13 +717,13 @@
             }
 
             .footer-content {
-                flex-direction: column;
+                flex-direction: row; /* Keep icons in a row */
                 gap: 15px;
                 margin-bottom: 25px; /* Increased spacing */
             }
 
             .footer-content a {
-                font-size: 22px; /* Increased text size on mobile */
+                font-size: 22px; /* Slightly smaller for mobile */
             }
 
             .copyright {
@@ -729,12 +737,13 @@
             }
 
             .footer-content {
+                flex-direction: row; /* Keep icons in a row */
                 gap: 10px;
                 margin-bottom: 20px; /* Increased spacing */
             }
 
             .footer-content a {
-                font-size: 20px; /* Increased text size on mobile */
+                font-size: 18px; /* Further adjusted for smaller screens */
             }
 
             .copyright {
@@ -805,43 +814,17 @@
     </main>
     <footer>
         <div class="footer-content">
-            <!-- Using Font Awesome icons with emoji fallback -->
-            <a href="mailto:example@email.com" aria-label="Email">
-                <i class="fas fa-envelope"></i>
-                <span class="fallback-icon" style="display: none;">📧</span>
-            </a>
-            <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn">
-                <i class="fab fa-linkedin"></i>
-                <span class="fallback-icon" style="display: none;">🔗</span>
-            </a>
-            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook">
-                <i class="fab fa-facebook"></i>
-                <span class="fallback-icon" style="display: none;">📘</span>
-            </a>
-            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram">
-                <i class="fab fa-instagram"></i>
-                <span class="fallback-icon" style="display: none;">📸</span>
-            </a>
-            <a href="https://www.twitter.com" target="_blank" aria-label="Twitter">
-                <i class="fab fa-twitter"></i>
-                <span class="fallback-icon" style="display: none;">🐦</span>
-            </a>
+            <a href="mailto:example@email.com" aria-label="Email"><i class="fas fa-envelope"></i></a>
+            <a href="https://www.linkedin.com" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            <a href="https://www.facebook.com" target="_blank" aria-label="Facebook"><i class="fab fa-facebook"></i></a>
+            <a href="https://www.instagram.com" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.twitter.com" target="_blank" aria-label="Twitter"><i class="fab fa-twitter"></i></a>
         </div>
         <div class="copyright">
             <p>© 2025 DigiDefence. All rights reserved.</p>
         </div>
     </footer>
     <script>
-        // Check if Font Awesome loaded, if not, show fallback emoji icons
-        window.onload = function() {
-            const icons = document.querySelectorAll('.footer-content i');
-            const fallbacks = document.querySelectorAll('.footer-content .fallback-icon');
-            if (!window.FontAwesome) {
-                icons.forEach(icon => icon.style.display = 'none');
-                fallbacks.forEach(fallback => fallback.style.display = 'inline');
-            }
-        };
-
         function toggleTheme() {
             document.body.classList.toggle('light-theme');
             // Save user preference in localStorage
