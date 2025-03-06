@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -15,25 +14,70 @@
 
         body {
             font-family: 'Poppins', sans-serif;
-            background: linear-gradient(135deg, #2a004f, #000);
+            background: linear-gradient(135deg, #2a004f, #000); /* Default dark theme */
             color: #fff;
             overflow-x: hidden;
             line-height: 1.6;
+            transition: background 0.3s ease, color 0.3s ease; /* Smooth theme transition */
+        }
+
+        /* Light Theme */
+        body.light-theme {
+            background: linear-gradient(135deg, #fff, #f0f0f0); /* Light theme */
+            color: #333;
+        }
+
+        body.light-theme header {
+            background: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        body.light-theme .logo,
+        body.light-theme nav a,
+        body.light-theme .nav-toggle-label span {
+            color: #2a004f;
+        }
+
+        body.light-theme nav a:hover {
+            color: #9b59b6;
+        }
+
+        body.light-theme h1 {
+            color: #333;
+        }
+
+        body.light-theme p {
+            color: #555;
+        }
+
+        body.light-theme .category {
+            background: rgba(155, 89, 182, 0.1);
+            color: #9b59b6;
+        }
+
+        body.light-theme .cta-button {
+            background: #9b59b6;
+            color: #fff;
+        }
+
+        body.light-theme .cta-button:hover {
+            background: #8e44ad;
         }
 
         header {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 20px 50px;
+            padding: 30px 50px; /* Increased padding for larger navbar */
             position: fixed;
             width: 100%;
             z-index: 1000;
             background: rgba(0, 0, 0, 0.5);
+            transition: background 0.3s ease;
         }
 
         .logo {
-            font-size: 24px;
+            font-size: 28px; /* Larger logo */
             font-weight: 700;
             color: #d4a4ff;
         }
@@ -56,10 +100,39 @@
             color: #d4a4ff;
             text-decoration: none;
             font-weight: 400;
+            font-size: 16px; /* Adjusted for balance */
             transition: color 0.3s ease;
         }
 
         nav a:hover {
+            color: #fff;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: 1px solid #d4a4ff;
+            color: #d4a4ff;
+            padding: 8px 15px;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 20px;
+            cursor: pointer;
+            margin-left: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .theme-toggle:hover {
+            background: #d4a4ff;
+            color: #2a004f;
+        }
+
+        body.light-theme .theme-toggle {
+            border: 1px solid #2a004f;
+            color: #2a004f;
+        }
+
+        body.light-theme .theme-toggle:hover {
+            background: #2a004f;
             color: #fff;
         }
 
@@ -68,7 +141,7 @@
             justify-content: space-between;
             align-items: center;
             min-height: 100vh;
-            padding: 80px 50px 0;
+            padding: 100px 50px 0; /* Adjusted padding for larger navbar */
             position: relative;
         }
 
@@ -152,11 +225,20 @@
             animation: pulse 2s infinite;
         }
 
+        body.light-theme .ai-box {
+            background: linear-gradient(135deg, #c39bd3, #b38cb4);
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.3);
+        }
+
         .dot {
             position: absolute;
             background: #9b59b6;
             border-radius: 50%;
             animation: float 4s infinite ease-in-out;
+        }
+
+        body.light-theme .dot {
+            background: #b38cb4;
         }
 
         .dot-1 {
@@ -197,6 +279,10 @@
             animation: rotate 4s infinite linear;
         }
 
+        body.light-theme .gear {
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%23b38cb4"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-2-12h4v2h-4v-2zm0 4h4v2h-4v-2z"/></svg>') no-repeat center;
+        }
+
         .circle {
             width: 60px;
             height: 60px;
@@ -208,12 +294,15 @@
             animation: scale 3s infinite ease-in-out;
         }
 
+        body.light-theme .circle {
+            background: radial-gradient(circle, #c39bd3, #b38cb4);
+        }
+
         /* Animations */
         @keyframes fadeIn {
             from {
                 opacity: 0;
             }
-
             to {
                 opacity: 1;
             }
@@ -224,7 +313,6 @@
                 transform: translateY(20px);
                 opacity: 0;
             }
-
             to {
                 transform: translateY(0);
                 opacity: 1;
@@ -235,11 +323,9 @@
             0% {
                 transform: scale(0);
             }
-
             50% {
                 transform: scale(1.1);
             }
-
             100% {
                 transform: scale(1);
             }
@@ -249,11 +335,9 @@
             0% {
                 transform: scale(1);
             }
-
             50% {
                 transform: scale(1.05);
             }
-
             100% {
                 transform: scale(1);
             }
@@ -263,11 +347,9 @@
             0% {
                 transform: translateY(0);
             }
-
             50% {
                 transform: translateY(-10px);
             }
-
             100% {
                 transform: translateY(0);
             }
@@ -277,7 +359,6 @@
             from {
                 transform: rotate(0deg);
             }
-
             to {
                 transform: rotate(360deg);
             }
@@ -287,11 +368,9 @@
             0% {
                 transform: scale(1);
             }
-
             50% {
                 transform: scale(1.1);
             }
-
             100% {
                 transform: scale(1);
             }
@@ -300,27 +379,26 @@
         /* Mobile Responsiveness */
         @media (max-width: 768px) {
             header {
-                padding: 15px 20px;
-                align-items: center;
+                padding: 20px 20px;
                 background: rgba(0, 0, 0, 0.8);
             }
 
             .logo {
-                font-size: 20px;
+                font-size: 24px;
             }
 
             .nav-toggle-label {
                 display: block;
                 cursor: pointer;
-                width: 30px;
-                height: 20px;
+                width: 35px; /* Larger for mobile */
+                height: 25px;
                 position: relative;
                 z-index: 1001;
             }
 
             .nav-toggle-label span {
                 background: #d4a4ff;
-                height: 3px;
+                height: 4px; /* Thicker lines */
                 width: 100%;
                 position: absolute;
                 left: 0;
@@ -332,16 +410,16 @@
             }
 
             .nav-toggle-label span:nth-child(2) {
-                top: 8px;
+                top: 10px;
             }
 
             .nav-toggle-label span:nth-child(3) {
-                top: 16px;
+                top: 20px;
             }
 
             .nav-toggle:checked~.nav-toggle-label span:nth-child(1) {
                 transform: rotate(45deg);
-                top: 8px;
+                top: 10px;
             }
 
             .nav-toggle:checked~.nav-toggle-label span:nth-child(2) {
@@ -350,7 +428,7 @@
 
             .nav-toggle:checked~.nav-toggle-label span:nth-child(3) {
                 transform: rotate(-45deg);
-                top: 8px;
+                top: 10px;
             }
 
             nav {
@@ -367,6 +445,10 @@
                 transition: transform 0.3s ease;
             }
 
+            body.light-theme nav {
+                background: #f0f0f0;
+            }
+
             .nav-toggle:checked~nav {
                 transform: translateX(0);
             }
@@ -377,9 +459,49 @@
                 color: #fff;
             }
 
+            body.light-theme nav a {
+                color: #2a004f;
+            }
+
+            body.light-theme nav a:hover {
+                color: #9b59b6;
+            }
+
+            .theme-toggle {
+                display: none; /* Hidden in mobile menu */
+            }
+
+            .mobile-theme-toggle {
+                margin: 20px 0;
+                background: transparent;
+                border: 1px solid #d4a4ff;
+                color: #d4a4ff;
+                padding: 10px 20px;
+                font-size: 1.2em;
+                font-weight: 600;
+                border-radius: 20px;
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+
+            .mobile-theme-toggle:hover {
+                background: #d4a4ff;
+                color: #2a004f;
+            }
+
+            body.light-theme .mobile-theme-toggle {
+                border: 1px solid #2a004f;
+                color: #2a004f;
+            }
+
+            body.light-theme .mobile-theme-toggle:hover {
+                background: #2a004f;
+                color: #fff;
+            }
+
             .hero {
                 flex-direction: column;
-                padding: 80px 20px;
+                padding: 90px 20px;
                 text-align: center;
                 min-height: auto;
             }
@@ -416,14 +538,14 @@
             }
 
             .ai-box {
-                width: 120px;
-                height: 120px;
+                width: 150px;
+                height: 150px;
                 font-size: 1.5em;
+                margin-top: -50px;
             }
 
             .dot {
-                display: none;
-                /* Hide dots on mobile to reduce clutter */
+                display: none; /* Hide dots on mobile to reduce clutter */
             }
 
             .gear {
@@ -443,32 +565,32 @@
 
         @media (max-width: 480px) {
             header {
-                padding: 10px 15px;
+                padding: 15px 15px;
             }
 
             .logo {
-                font-size: 18px;
+                font-size: 20px;
             }
 
             .nav-toggle-label {
-                width: 25px;
-                height: 18px;
+                width: 30px;
+                height: 20px;
             }
 
             .nav-toggle-label span:nth-child(2) {
-                top: 7px;
+                top: 8px;
             }
 
             .nav-toggle-label span:nth-child(3) {
-                top: 14px;
+                top: 16px;
             }
 
             .nav-toggle:checked~.nav-toggle-label span:nth-child(1) {
-                top: 7px;
+                top: 8px;
             }
 
             .nav-toggle:checked~.nav-toggle-label span:nth-child(3) {
-                top: 7px;
+                top: 8px;
             }
 
             nav a {
@@ -476,8 +598,13 @@
                 margin: 15px 0;
             }
 
+            .mobile-theme-toggle {
+                font-size: 1em;
+                padding: 8px 15px;
+            }
+
             .hero {
-                padding: 70px 15px;
+                padding: 80px 15px;
             }
 
             h1 {
@@ -498,8 +625,8 @@
             }
 
             .ai-box {
-                width: 100px;
-                height: 100px;
+                width: 120px;
+                height: 120px;
                 font-size: 1.2em;
             }
 
@@ -514,34 +641,13 @@
             }
         }
 
-        .ai-box {
-            width: 100%;
-            max-width: 300px;
-            /* Adjust based on your design */
-            height: auto;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            overflow: hidden;
-        }
-
-        .ai-box img {
-            width: 100%;
-            height: auto;
-            object-fit: cover;
-            /* Ensures the image fits properly */
-            border-radius: 10px;
-            /* Optional: Add rounded corners */
-        }
-
-        /* Default AI Box Position */
+        /* Removed duplicate .ai-box styles */
         .ai-box {
             position: relative;
             display: flex;
             justify-content: center;
             align-items: center;
             width: 200px;
-            /* Adjust as per requirement */
             height: 200px;
         }
 
@@ -549,24 +655,7 @@
             width: 100%;
             height: auto;
             object-fit: cover;
-        }
-
-        /* Move AI Image Up in Mobile View */
-        @media (max-width: 768px) {
-            .hero-graphic {
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                position: relative;
-            }
-
-            .ai-box {
-                margin-top: -50px;
-                /* Moves image up */
-                width: 150px;
-                /* Adjust size for better fit */
-                height: 150px;
-            }
+            border-radius: 10px;
         }
     </style>
 </head>
@@ -586,7 +675,9 @@
             <a href="#products">Products</a>
             <a href="#resources">Resources</a>
             <a href="#contacts">Contacts</a>
+            <button class="mobile-theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
         </nav>
+        <button class="theme-toggle" onclick="toggleTheme()">Toggle Theme</button>
     </header>
     <main>
         <section class="hero">
@@ -597,7 +688,7 @@
                     DIGITAL REALM
                 </h1>
                 <p>Your trusted defence against digital threats, securing data, IT, and brand integrity.</p>
-                <button class="cta-button">🛡️Coming Soon: Enhancing Cyber Defenses for a Safer Tomorrow!</button>
+                <button class="cta-button">🛡️ Launching Soon: Cyber Security Reinvented!</button>
             </div>
             <div class="hero-graphic">
                 <div class="ai-box">
@@ -612,6 +703,24 @@
             </div>
         </section>
     </main>
-</body>
+    <script>
+        function toggleTheme() {
+            document.body.classList.toggle('light-theme');
+            // Save user preference in localStorage
+            if (document.body.classList.contains('light-theme')) {
+                localStorage.setItem('theme', 'light');
+            } else {
+                localStorage.setItem('theme', 'dark');
+            }
+        }
 
+        // Load saved theme on page load
+        document.addEventListener('DOMContentLoaded', () => {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                document.body.classList.add('light-theme');
+            }
+        });
+    </script>
+</body>
 </html>
