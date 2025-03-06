@@ -1,0 +1,617 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Native - AI Integration</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #2a004f, #000);
+            color: #fff;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 50px;
+            position: fixed;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.5);
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: 700;
+            color: #d4a4ff;
+        }
+
+        .nav-toggle {
+            display: none;
+        }
+
+        .nav-toggle-label {
+            display: none;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+        }
+
+        nav a {
+            margin-left: 30px;
+            color: #d4a4ff;
+            text-decoration: none;
+            font-weight: 400;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #fff;
+        }
+
+        .hero {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            min-height: 100vh;
+            padding: 80px 50px 0;
+            position: relative;
+        }
+
+        .hero-content {
+            z-index: 10;
+            max-width: 50%;
+        }
+
+        .category {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 5px 15px;
+            border-radius: 20px;
+            color: #d4a4ff;
+            margin-bottom: 20px;
+            animation: fadeIn 1s ease-in;
+        }
+
+        h1 {
+            font-size: 4em;
+            font-weight: 700;
+            line-height: 1.2;
+            color: #fff;
+            margin-bottom: 20px;
+            animation: slideUp 1s ease-out;
+        }
+
+        p {
+            font-size: 1.2em;
+            color: #d4a4ff;
+            margin-bottom: 30px;
+            animation: fadeIn 1.5s ease-in;
+        }
+
+        .cta-button {
+            background: #fff;
+            color: #2a004f;
+            border: none;
+            padding: 15px 30px;
+            font-size: 1em;
+            font-weight: 600;
+            border-radius: 25px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            transition: transform 0.3s ease, background 0.3s ease;
+            animation: bounceIn 1.5s ease-out;
+        }
+
+        .cta-button:hover {
+            transform: scale(1.05);
+            background: #d4a4ff;
+        }
+
+        .cta-button span {
+            font-size: 1.2em;
+        }
+
+        .hero-graphic {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 50%;
+            height: 100%;
+        }
+
+        .ai-box {
+            width: 200px;
+            height: 200px;
+            background: linear-gradient(135deg, #9b59b6, #8e44ad);
+            border-radius: 10px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            font-weight: 700;
+            color: #fff;
+            box-shadow: 0 0 20px rgba(155, 89, 182, 0.5);
+            animation: pulse 2s infinite;
+        }
+
+        .dot {
+            position: absolute;
+            background: #9b59b6;
+            border-radius: 50%;
+            animation: float 4s infinite ease-in-out;
+        }
+
+        .dot-1 {
+            width: 20px;
+            height: 20px;
+            top: 50px;
+            left: 50px;
+        }
+
+        .dot-2 {
+            width: 15px;
+            height: 15px;
+            top: 100px;
+            right: 50px;
+        }
+
+        .dot-3 {
+            width: 10px;
+            height: 10px;
+            bottom: 50px;
+            left: 100px;
+        }
+
+        .dot-4 {
+            width: 12px;
+            height: 12px;
+            bottom: 100px;
+            right: 100px;
+        }
+
+        .gear {
+            width: 50px;
+            height: 50px;
+            background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="%239b59b6"><path d="M12 2a10 10 0 100 20 10 10 0 000-20zm0 18a8 8 0 110-16 8 8 0 010 16zm-2-12h4v2h-4v-2zm0 4h4v2h-4v-2z"/></svg>') no-repeat center;
+            position: absolute;
+            bottom: 50px;
+            left: 50px;
+            animation: rotate 4s infinite linear;
+        }
+
+        .circle {
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, #9b59b6, #8e44ad);
+            border-radius: 50%;
+            position: absolute;
+            top: 50px;
+            right: 50px;
+            animation: scale 3s infinite ease-in-out;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(20px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes bounceIn {
+            0% {
+                transform: scale(0);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0% {
+                transform: translateY(0);
+            }
+
+            50% {
+                transform: translateY(-10px);
+            }
+
+            100% {
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @keyframes scale {
+            0% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.1);
+            }
+
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            header {
+                padding: 15px 20px;
+                align-items: center;
+                background: rgba(0, 0, 0, 0.8);
+            }
+
+            .logo {
+                font-size: 20px;
+            }
+
+            .nav-toggle-label {
+                display: block;
+                cursor: pointer;
+                width: 30px;
+                height: 20px;
+                position: relative;
+                z-index: 1001;
+            }
+
+            .nav-toggle-label span {
+                background: #d4a4ff;
+                height: 3px;
+                width: 100%;
+                position: absolute;
+                left: 0;
+                transition: all 0.3s ease;
+            }
+
+            .nav-toggle-label span:nth-child(1) {
+                top: 0;
+            }
+
+            .nav-toggle-label span:nth-child(2) {
+                top: 8px;
+            }
+
+            .nav-toggle-label span:nth-child(3) {
+                top: 16px;
+            }
+
+            .nav-toggle:checked~.nav-toggle-label span:nth-child(1) {
+                transform: rotate(45deg);
+                top: 8px;
+            }
+
+            .nav-toggle:checked~.nav-toggle-label span:nth-child(2) {
+                opacity: 0;
+            }
+
+            .nav-toggle:checked~.nav-toggle-label span:nth-child(3) {
+                transform: rotate(-45deg);
+                top: 8px;
+            }
+
+            nav {
+                position: absolute;
+                top: 0;
+                left: 0;
+                width: 100%;
+                height: 100vh;
+                background: #2a004f;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                transform: translateX(-100%);
+                transition: transform 0.3s ease;
+            }
+
+            .nav-toggle:checked~nav {
+                transform: translateX(0);
+            }
+
+            nav a {
+                margin: 20px 0;
+                font-size: 1.5em;
+                color: #fff;
+            }
+
+            .hero {
+                flex-direction: column;
+                padding: 80px 20px;
+                text-align: center;
+                min-height: auto;
+            }
+
+            .hero-content {
+                max-width: 100%;
+                margin-bottom: 40px;
+            }
+
+            .category {
+                font-size: 12px;
+                padding: 4px 12px;
+            }
+
+            h1 {
+                font-size: 2.2em;
+                line-height: 1.3;
+            }
+
+            p {
+                font-size: 1em;
+                padding: 0 10px;
+            }
+
+            .cta-button {
+                padding: 12px 25px;
+                font-size: 0.9em;
+            }
+
+            .hero-graphic {
+                width: 100%;
+                height: 250px;
+                margin-top: 20px;
+            }
+
+            .ai-box {
+                width: 120px;
+                height: 120px;
+                font-size: 1.5em;
+            }
+
+            .dot {
+                display: none;
+                /* Hide dots on mobile to reduce clutter */
+            }
+
+            .gear {
+                width: 30px;
+                height: 30px;
+                bottom: 10px;
+                left: 10px;
+            }
+
+            .circle {
+                width: 40px;
+                height: 40px;
+                top: 10px;
+                right: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header {
+                padding: 10px 15px;
+            }
+
+            .logo {
+                font-size: 18px;
+            }
+
+            .nav-toggle-label {
+                width: 25px;
+                height: 18px;
+            }
+
+            .nav-toggle-label span:nth-child(2) {
+                top: 7px;
+            }
+
+            .nav-toggle-label span:nth-child(3) {
+                top: 14px;
+            }
+
+            .nav-toggle:checked~.nav-toggle-label span:nth-child(1) {
+                top: 7px;
+            }
+
+            .nav-toggle:checked~.nav-toggle-label span:nth-child(3) {
+                top: 7px;
+            }
+
+            nav a {
+                font-size: 1.2em;
+                margin: 15px 0;
+            }
+
+            .hero {
+                padding: 70px 15px;
+            }
+
+            h1 {
+                font-size: 1.8em;
+            }
+
+            p {
+                font-size: 0.9em;
+            }
+
+            .cta-button {
+                padding: 10px 20px;
+                font-size: 0.8em;
+            }
+
+            .hero-graphic {
+                height: 200px;
+            }
+
+            .ai-box {
+                width: 100px;
+                height: 100px;
+                font-size: 1.2em;
+            }
+
+            .gear {
+                width: 25px;
+                height: 25px;
+            }
+
+            .circle {
+                width: 30px;
+                height: 30px;
+            }
+        }
+
+        .ai-box {
+            width: 100%;
+            max-width: 300px;
+            /* Adjust based on your design */
+            height: auto;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .ai-box img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            /* Ensures the image fits properly */
+            border-radius: 10px;
+            /* Optional: Add rounded corners */
+        }
+
+        /* Default AI Box Position */
+        .ai-box {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 200px;
+            /* Adjust as per requirement */
+            height: 200px;
+        }
+
+        .ai-box img {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+
+        /* Move AI Image Up in Mobile View */
+        @media (max-width: 768px) {
+            .hero-graphic {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                position: relative;
+            }
+
+            .ai-box {
+                margin-top: -50px;
+                /* Moves image up */
+                width: 150px;
+                /* Adjust size for better fit */
+                height: 150px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">DigiDefence</div>
+        <input type="checkbox" id="nav-toggle" class="nav-toggle">
+        <label for="nav-toggle" class="nav-toggle-label">
+            <span></span>
+            <span></span>
+            <span></span>
+        </label>
+        <nav>
+            <a href="#about">Home</a>
+            <a href="#services">Services</a>
+            <a href="#products">Products</a>
+            <a href="#resources">Resources</a>
+            <a href="#contacts">Contacts</a>
+        </nav>
+    </header>
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <span class="category">🔐 Cybersecurity + Intelligence</span>
+                <h1>
+                    YOUR SHIELD IN THE <br>
+                    DIGITAL REALM
+                </h1>
+                <p>Your trusted defence against digital threats, securing data, IT, and brand integrity.</p>
+                <button class="cta-button">🛡️ Launching Soon: Cyber Security Reinvented!</button>
+            </div>
+            <div class="hero-graphic">
+                <div class="ai-box">
+                    <img src="image.png" alt="AI Image">
+                </div>
+                <div class="dot dot-1"></div>
+                <div class="dot dot-2"></div>
+                <div class="dot dot-3"></div>
+                <div class="dot dot-4"></div>
+                <div class="gear"></div>
+                <div class="circle"></div>
+            </div>
+        </section>
+    </main>
+</body>
+
+</html>
